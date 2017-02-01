@@ -1,11 +1,12 @@
 #2016-2017 PERSONAL PROJECTS: TurtleChat!
-#WRITE YOUR NAME HERE!
+#WRITE YOUR NAME HERE! Naim Mousa
 
 #####################################################################################
 #                                   IMPORTS                                         #
 #####################################################################################
-#import the turtle module
-#import the Client class from the turtle_chat_client module
+import turtle
+from turtle_chat_client import Client
+from turtle_chat_widgets import Button, TextInput
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
 #####################################################################################
 #####################################################################################
@@ -66,6 +67,43 @@
 #Read the comments below for hints and directions.
 ##################################################################
 ##################################################################
+class TextBox (TextInput):
+    def draw_box(self):
+        self.drawer=turtle.clone()
+        self.drawer.hideturtle()
+        self.drawer.penup()
+        self.drawer.goto(self.pos)
+        self.drawer.pendown()
+        self.drawer.goto(self.drawer.xcor()+self.width,self.drawer.ycor())
+        self.drawer.goto(self.drawer.xcor(),self.drawer.ycor()-self.height)
+        self.drawer.goto(self.drawer.xcor()-self.width,self.drawer.ycor())
+        self.drawer.goto(self.drawer.xcor(),self.drawer.ycor()+self.width)
+    def write_msg(swelf):
+        self.drawer=turtle.clone()
+        self.drawer.hideturtle()
+        self.drawer.penup()
+        self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.height/2+20)
+        self.pendown()
+        self.setup_listeners()
+        self.writer.write(self.new_msg)
+        self.draw_box()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class View:
     _MSG_LOG_LENGTH=5 #Number of messages to retain in view
     _SCREEN_WIDTH=300
@@ -82,7 +120,7 @@ class View:
         ###
 
         ###
-        #Make a new client object and store it in this instance of View
+        #Make a new Client object and store it in this instance of View
         #(i.e. self).  The name of the instance should be my_client
         ###
 
