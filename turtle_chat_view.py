@@ -65,20 +65,24 @@ from turtle_chat_widgets import Button, TextInput
 #Read the comments below for hints and directions.
 ##################################################################
 ##################################################################
+turtle.bgcolor("light blue")
 class TextBox (TextInput):
     def draw_box(self):
         self.pos = (-145,-200)
         self.width = 150
+        self.height = 10
         turtle.hideturtle()
-        self.writer = turtle.clone()
-        self.writer.penup()
-        self.writer.goto(self.pos)
-        self.writer.pendown()
-        self.writer.goto(self.width, -200)
-        self.writer.goto(self.width, self.height)
-        self.writer.goto(-145, self.height)
-        self.writer.goto(self.pos)
-        self.writer.penup()
+        self.drawer = turtle.clone()
+        self.drawer.pencolor("magenta")
+        self.drawer.penup()
+        self.drawer.goto(self.pos)
+        self.drawer.fillcolor("magenta")
+        self.drawer.pendown()
+        self.drawer.goto(self.width, -200)
+        self.drawer.goto(self.width, self.height)
+        self.drawer.goto(-145, self.height)
+        self.drawer.goto(self.pos)
+        self.drawer.fillcolor("magenta")
 
 
 ## REMMEBER TO DO WHATEVER YASMEEEN TOLF YOU TO DO! P.S. ASK HER AGAIN CUZ YOU PROBABLY WONT REMEBER
@@ -103,10 +107,13 @@ class SendButton(Button):
             self.turtle=turtle.clone()
         else:
             self.turtle=my_turtle
+        self.turtle.pencolor("green")
         self.turtle.speed(0)
         self.turtle.hideturtle()
         self.turtle.penup()
         self.turtle.goto(pos)
+        self.turtle.fillcolor("green")
+        
 
         if shape is None:
             self.turtle.shape('square')
@@ -119,6 +126,14 @@ class SendButton(Button):
         self.turtle.onclick(self.fun) #Links listener to the Button function
         turtle.listen()
         self.view=view
+
+        platypus = turtle.clone()
+        self.platypus = platypus
+        self.platypus.penup()
+        self.platypus.goto(0,-237)
+        self.platypus.pendown()
+        self.platypus.pencolor("white")
+        self.platypus.write("SEND", move=False, align="center", font=("Times New Roman", 25, "normal"))
 
     def fun(self,x=0, y=0):
         self.view.send_msg()
