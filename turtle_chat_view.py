@@ -85,14 +85,13 @@ class TextBox (TextInput):
         self.drawer.fillcolor("magenta")
 
 
-## REMMEBER TO DO WHATEVER YASMEEEN TOLF YOU TO DO! P.S. ASK HER AGAIN CUZ YOU PROBABLY WONT REMEBER
+## REMMEBER TO DO WHATEVER YASMEEN TOLD YOU TO DO! P.S. ASK HER AGAIN CUZ YOU PROBABLY WONT REMEBER
 
     def write_msg(self):
         self.writer.penup()
         self.writer.goto(-130,-20)
         self.writer.clear()
         self.writer.write(self.new_msg)
-        
 
 class SendButton(Button):
     def __init__ (self,view,my_turtle=None,shape=None,pos=(0,-220)):
@@ -137,28 +136,9 @@ class SendButton(Button):
 
     def fun(self,x=0, y=0):
         self.view.send_msg()
-
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class View:
-    
-
-    def __init__(self,username='Me',partner_name='Partner'):
+    def __init__(self ,username='Me',partner_name='Partner'):
         _MSG_LOG_LENGTH=5 #Number of messages to retain in view
         _SCREEN_WIDTH=300
         _SCREEN_HEIGHT=600
@@ -204,7 +184,7 @@ class View:
         #or at the end of the list using
         #   self.msg_queue.append(a_msg_string)
         self.msg_queue=[]
-        ###1
+        ###
 
         ###
         #Create one turtle object for each message to display.
@@ -224,8 +204,8 @@ class View:
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
         ###
-        self.TextBox = TextBox()
-        self.SendButton = SendButton()
+        self.text_box = TextBox()
+        self.send_button = SendButton(self)
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
@@ -241,8 +221,10 @@ class View:
         It should call self.display_msg() to cause the message
         display to be updated.
         '''
-        
-        pass
+        self.client.send(self.text_box.new_msg)
+        self.msg_queue.insert(0,self.text_box.new_msg)
+        self.text_box.clear()
+        self.display_msg()
 
     def get_msg(self):
         return self.textbox.get_msg()
@@ -286,7 +268,7 @@ class View:
         pass
 
     def get_client(self):
-        return self.my_client
+        return self.client
 ##############################################################
 ##############################################################
 
