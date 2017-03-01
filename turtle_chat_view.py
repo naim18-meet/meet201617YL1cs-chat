@@ -192,7 +192,7 @@ class View:
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
-        '''
+        
         self.msg_queue_turtles = list()
         for i in range(4):
             self.msg_queue.insert(i,"")
@@ -201,7 +201,7 @@ class View:
             self.msg_queue_turtles[tutu].hideturtle()
             self.msg_queue_turtles[tutu].penup()
             self.msg_queue_turtles[tutu].goto(-100,tutu*(_LINE_SPACING))
-'''
+
         ###
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
@@ -270,15 +270,9 @@ class View:
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
-        self.msg_queue_turtles = list()
-        for i in range(4):
-            self.msg_queue.insert(i,"")
-            self.msg_queue_turtles.append(turtle.clone())
-        for tutu in range(4):
-            self.msg_queue_turtles[tutu].hideturtle()
-            self.msg_queue_turtles[tutu].penup()
-            self.msg_queue_turtles[tutu].goto(-100,tutu*(_LINE_SPACING))
-        
+        for i in range (5):
+            self.msg_queue_turtles[i+1].clear()
+            self.msg_queue_turtles[i+1].write(self.msg_queue[i])
 
     def get_client(self):
         return self.client
@@ -307,4 +301,3 @@ if __name__ == '__main__':
     check()
     
     turtle.mainloop()
-
