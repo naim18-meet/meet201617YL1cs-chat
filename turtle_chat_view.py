@@ -14,7 +14,8 @@ from turtle_chat_widgets import Button, TextInput
 #####################################################################################
 #                                   TextBox                                         #
 #####################################################################################
-#Make a class called TextBox, which will be a subclass of TextInput.
+#Make a class called TextB
+#ox, which will be a subclass of TextInput.
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
 #
@@ -191,6 +192,7 @@ class View:
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
+        '''
         self.msg_queue_turtles = list()
         for i in range(4):
             self.msg_queue.insert(i,"")
@@ -199,7 +201,7 @@ class View:
             self.msg_queue_turtles[tutu].hideturtle()
             self.msg_queue_turtles[tutu].penup()
             self.msg_queue_turtles[tutu].goto(-100,tutu*(_LINE_SPACING))
-
+'''
         ###
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
@@ -223,7 +225,7 @@ class View:
         '''
         self.client.send(self.text_box.new_msg)
         self.msg_queue.insert(0,self.text_box.new_msg)
-        self.text_box.clear()
+        self.text_box.clear_msg()
         self.display_msg()
 
     def get_msg(self):
@@ -242,7 +244,8 @@ class View:
 
         Then, it can call turtle.listen()
         '''
-        pass
+        self.send_button.fun()
+        turtle.listen()
 
     def msg_received(self,msg):
         '''
@@ -259,13 +262,23 @@ class View:
         #or append (to put at the end).
         #
         #Then, call the display_msg method to update the display
+        self.msg_queue.insert(0,self.text_box.new_msg)
+        self.display_msg()
 
     def display_msg(self):
         '''
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
-        pass
+        self.msg_queue_turtles = list()
+        for i in range(4):
+            self.msg_queue.insert(i,"")
+            self.msg_queue_turtles.append(turtle.clone())
+        for tutu in range(4):
+            self.msg_queue_turtles[tutu].hideturtle()
+            self.msg_queue_turtles[tutu].penup()
+            self.msg_queue_turtles[tutu].goto(-100,tutu*(_LINE_SPACING))
+        
 
     def get_client(self):
         return self.client
