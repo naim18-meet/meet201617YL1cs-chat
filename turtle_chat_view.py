@@ -66,7 +66,7 @@ from turtle_chat_widgets import Button, TextInput
 #Read the comments below for hints and directions.
 ##################################################################
 ##################################################################
-turtle.bgcolor("light blue")
+turtle.bgpic("cat.gif")
 class TextBox (TextInput):
     def draw_box(self):
         self.pos = (-145,-200)
@@ -262,7 +262,8 @@ class View:
         #or append (to put at the end).
         #
         #Then, call the display_msg method to update the display
-        self.msg_queue.insert(0,self.text_box.new_msg)
+        self.msg_queue.append(msg)
+        #self.msg_queue.insert(0,self.text_box.new_msg)
         self.display_msg()
 
     def display_msg(self):
